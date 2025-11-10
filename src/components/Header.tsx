@@ -3,6 +3,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
 
 const Header = () => {
   return (
@@ -18,7 +20,28 @@ const Header = () => {
           <a href="#contact" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Contact</a>
         </nav>
         <Button className="hidden md:block">Book Now</Button>
-        {/* Mobile menu icon could go here */}
+        
+        {/* Mobile menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <nav className="flex flex-col space-y-4 mt-8">
+                <Link to="/" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Home</Link>
+                <a href="#about" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">About</a>
+                <a href="#services" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Services</a>
+                <a href="#gallery" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Gallery</a>
+                <a href="#contact" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Contact</a>
+                <Button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white">Book Now</Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
