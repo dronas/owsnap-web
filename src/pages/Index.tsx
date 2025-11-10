@@ -8,8 +8,13 @@ import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Index = () => {
+  // Although no direct text here, initializing useTranslation is good practice
+  // if you plan to add text directly to this component later.
+  const { t } = useTranslation(); 
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

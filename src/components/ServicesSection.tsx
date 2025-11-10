@@ -4,43 +4,46 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const ServicesSection = () => {
+  const { t } = useTranslation();
+
   const services = [
     {
-      name: "Classic Booth",
+      name: t("classicBooth"),
       price: "$499",
       features: [
-        "2 Hours Rental",
-        "Standard Backdrop",
-        "Basic Prop Kit",
-        "Unlimited Prints",
-        "Digital Gallery",
+        t("hoursRental", { count: 2 }),
+        t("standardBackdrop"),
+        t("basicPropKit"),
+        t("unlimitedPrints"),
+        t("digitalGallery"),
       ],
     },
     {
-      name: "Deluxe Experience",
+      name: t("deluxeExperience"),
       price: "$799",
       features: [
-        "4 Hours Rental",
-        "Premium Backdrop Choice",
-        "Deluxe Prop Kit",
-        "Unlimited Prints",
-        "Digital Gallery",
-        "Custom Photo Template",
-        "On-site Attendant",
+        t("hoursRental", { count: 4 }),
+        t("premiumBackdropChoice"),
+        t("deluxePropKit"),
+        t("unlimitedPrints"),
+        t("digitalGallery"),
+        t("customPhotoTemplate"),
+        t("onSiteAttendant"),
       ],
     },
     {
-      name: "Premium Package",
+      name: t("premiumPackage"),
       price: "$1099",
       features: [
-        "All Deluxe Features",
-        "6 Hours Rental",
-        "Green Screen Option",
-        "Video Messaging",
-        "Social Media Sharing Kiosk",
-        "Guestbook Album",
+        t("allDeluxeFeatures"),
+        t("hoursRental", { count: 6 }),
+        t("greenScreenOption"),
+        t("videoMessaging"),
+        t("socialMediaSharingKiosk"),
+        t("guestbookAlbum"),
       ],
     },
   ];
@@ -49,7 +52,7 @@ const ServicesSection = () => {
     <section id="services" className="py-16 md:py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-12">
-          Our Photobooth Packages
+          {t('packagesTitle')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -69,7 +72,7 @@ const ServicesSection = () => {
                 </ul>
               </CardContent>
               <div className="p-6 pt-0">
-                <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">Select Package</Button>
+                <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">{t('selectPackage')}</Button>
               </div>
             </Card>
           ))}

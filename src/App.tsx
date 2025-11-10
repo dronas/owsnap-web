@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import BookingPage from "./pages/BookingPage"; // Import BookingPage
+import BookingPage from "./pages/BookingPage";
+import { I18nextProvider } from "react-i18next"; // Import I18nextProvider
+import i18n from "./i18n"; // Import i18n configuration
 
 const queryClient = new QueryClient();
 
@@ -16,14 +18,16 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/booking" element={<BookingPage />} /> {/* Add BookingPage route */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <I18nextProvider i18n={i18n}> {/* Wrap with I18nextProvider */}
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/booking" element={<BookingPage />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </I18nextProvider>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

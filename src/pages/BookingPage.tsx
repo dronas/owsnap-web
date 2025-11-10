@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,23 +34,25 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { showSuccess, showError } from "@/utils/toast"; // Using the existing toast utility
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().optional(),
-  eventType: z.enum(["Wedding", "Birthday", "Corporate Event", "Other"], {
-    required_error: "Please select an event type.",
-  }),
-  eventDate: z.date({
-    required_error: "An event date is required.",
-  }),
-  package: z.enum(["Classic Booth", "Deluxe Experience", "Premium Package"], {
-    required_error: "Please select a package.",
-  }),
-  message: z.string().optional(),
-});
-
 const BookingPage = () => {
+  const { t } = useTranslation(); // Initialize useTranslation
+
+  const formSchema = z.object({
+    name: z.string().min(2, { message: t("nameMustBeAtLeast2Chars") || "Name must be at least 2 characters." }),
+    email: z.string().email({ message: t("enterValidEmail") || "Please enter a valid email address." }),
+    phone: z.string().optional(),
+    eventType: z.enum(["Wedding", "Birthday", "Corporate Event", "Other"], {
+      required_error: t("selectEventTypeRequired") || "Please select an event type.",
+    }),
+    eventDate: z.date({
+      required_error: t("eventDateRequired") || "An event date is required.",
+    }),
+    package: z.enum(["Classic Booth", "Deluxe Experience", "Premium Package"], {
+      required_error: t("selectPackageRequired") || "Please select a package.",
+    }),
+    message: z.string().optional(),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -66,7 +69,7 @@ const BookingPage = () => {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log("Booking form submitted:", values);
     // In a real application, you would send this data to a backend API
-    showSuccess("Your booking request has been sent! We'll be in touch soon.");
+    showSuccess(t("bookingSuccess"));
     form.reset();
   };
 
@@ -76,10 +79,10 @@ const BookingPage = () => {
         <Card className="bg-white dark:bg-gray-900 shadow-lg">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-bold text-gray-900 dark:text-white">
-              Book Your Owsnap Photobooth
+              {t('bookPhotoboothTitle')}
             </CardTitle>
             <p className="text-gray-600 dark:text-gray-400 mt-2">
-              Fill out the form below to get a quote and reserve your date!
+              {t('bookPhotoboothSubtitle')}
             </p>
           </CardHeader>
           <CardContent>
@@ -90,9 +93,9 @@ const BookingPage = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name</FormLabel>
+                      <FormLabel>{t('fullName')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe" {...field} className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
+                        <Input placeholder={t('yourName')} {...field} className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -103,9 +106,9 @@ const BookingPage = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>{t('email')}</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="john.doe@example.com" {...field} className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
+                        <Input type="email" placeholder={t('yourEmail')} {...field} className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -116,7 +119,7 @@ const BookingPage = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number (Optional)</FormLabel>
+                      <FormLabel>{t('phoneNumberOptional')}</FormLabel>
                       <FormControl>
                         <Input type="tel" placeholder="(123) 456-7890" {...field} className="dark:bg-gray-800 dark:text-white dark:border-gray-700" />
                       </FormControl>
@@ -129,18 +132,18 @@ const BookingPage = () => {
                   name="eventType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Type of Event</FormLabel>
+                      <FormLabel>{t('eventType')}</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="dark:bg-gray-800 dark:text-white dark:border-gray-700">
-                            <SelectValue placeholder="Select an event type" />
+                            <SelectValue placeholder={t('selectEventType')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="dark:bg-gray-800 dark:text-white dark:border-gray-700">
-                          <SelectItem value="Wedding">Wedding</SelectItem>
-                          <SelectItem value="Birthday">Birthday Party</SelectItem>
-                          <SelectItem value="Corporate Event">Corporate Event</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
+                          <SelectItem value="Wedding">{t('wedding')}</SelectItem>
+                          <SelectItem value="Birthday">{t('birthdayParty')}</SelectItem>
+                          <SelectItem value="Corporate Event">{t('corporateEvent')}</SelectItem>
+                          <SelectItem value="Other">{t('other')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -152,7 +155,7 @@ const BookingPage = () => {
                   name="eventDate"
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel>Event Date</FormLabel>
+                      <FormLabel>{t('eventDate')}</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
@@ -166,7 +169,7 @@ const BookingPage = () => {
                               {field.value ? (
                                 format(field.value, "PPP")
                               ) : (
-                                <span>Pick a date</span>
+                                <span>{t('pickADate')}</span>
                               )}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
@@ -193,17 +196,17 @@ const BookingPage = () => {
                   name="package"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Preferred Package</FormLabel>
+                      <FormLabel>{t('preferredPackage')}</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="dark:bg-gray-800 dark:text-white dark:border-gray-700">
-                            <SelectValue placeholder="Select a package" />
+                            <SelectValue placeholder={t('selectPackageDropdown')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="dark:bg-gray-800 dark:text-white dark:border-gray-700">
-                          <SelectItem value="Classic Booth">Classic Booth</SelectItem>
-                          <SelectItem value="Deluxe Experience">Deluxe Experience</SelectItem>
-                          <SelectItem value="Premium Package">Premium Package</SelectItem>
+                          <SelectItem value="Classic Booth">{t('classicBooth')}</SelectItem>
+                          <SelectItem value="Deluxe Experience">{t('deluxeExperience')}</SelectItem>
+                          <SelectItem value="Premium Package">{t('premiumPackage')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -215,10 +218,10 @@ const BookingPage = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Additional Details (Optional)</FormLabel>
+                      <FormLabel>{t('additionalDetailsOptional')}</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Tell us more about your event..."
+                          placeholder={t('tellUsMore')}
                           className="resize-y dark:bg-gray-800 dark:text-white dark:border-gray-700"
                           {...field}
                         />
@@ -228,7 +231,7 @@ const BookingPage = () => {
                   )}
                 />
                 <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                  Submit Booking Request
+                  {t('submitBookingRequest')}
                 </Button>
               </form>
             </Form>

@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-900 text-gray-300 py-8 dark:bg-gray-950">
       <div className="container mx-auto px-4 text-center">
@@ -19,10 +22,10 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-sm mb-2">
-          &copy; {new Date().getFullYear()} Owsnap Photobooths. All rights reserved.
+          &copy; {new Date().getFullYear()} {t('allRightsReserved')}
         </p>
         <p className="text-xs">
-          Designed with fun and memories in mind.
+          {t('designedWithFun')}
         </p>
       </div>
     </footer>
