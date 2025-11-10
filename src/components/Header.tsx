@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle'; // Import ThemeToggle
+import { ThemeToggle } from './ThemeToggle';
 
 const Header = () => {
   return (
@@ -20,14 +20,16 @@ const Header = () => {
           <a href="#gallery" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Gallery</a>
           <a href="#contact" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">Contact</a>
         </nav>
-        <div className="flex items-center space-x-4"> {/* Wrap button and toggle in a div */}
-          <Button className="hidden md:block">Book Now</Button>
-          <ThemeToggle /> {/* Add ThemeToggle here */}
+        <div className="flex items-center space-x-4">
+          <Link to="/booking"> {/* Link to booking page */}
+            <Button className="hidden md:block">Book Now</Button>
+          </Link>
+          <ThemeToggle />
         </div>
         
         {/* Mobile menu */}
-        <div className="md:hidden flex items-center space-x-2"> {/* Adjust for mobile toggle */}
-          <ThemeToggle /> {/* Add ThemeToggle to mobile menu as well */}
+        <div className="md:hidden flex items-center space-x-2">
+          <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -42,7 +44,9 @@ const Header = () => {
                 <a href="#services" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Services</a>
                 <a href="#gallery" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Gallery</a>
                 <a href="#contact" className="text-lg font-medium hover:text-purple-600 dark:hover:text-pink-500">Contact</a>
-                <Button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white">Book Now</Button>
+                <Link to="/booking"> {/* Link to booking page */}
+                  <Button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white">Book Now</Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
