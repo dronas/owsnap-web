@@ -1,9 +1,6 @@
 ---
 deployment:
   tasks:
-    - export CI=true
-    - /opt/alt/php81/usr/bin/php composer.phar install --no-dev --no-interaction --optimize-autoloader
-    - npm install
-    - npm run build
-    - cp -R dist/ /home/yourusername/public_html/ # Replace 'yourusername' with your actual cPanel username
+    - export DEPLOYPATH=/home/example/public_html/
+    - /bin/cp -R /repositories/owsnap-web $DEPLOYPATH
 ---
