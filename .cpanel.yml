@@ -1,6 +1,8 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/example/public_html/
-    - /bin/cp -R /repositories/owsnap-web $DEPLOYPATH
+    - export CI=true
+    - npm install
+    - npm run build
+    - cp -R dist/ /home/yourusername/public_html/ # IMPORTANT: Replace 'yourusername' with your actual cPanel username
 ---
