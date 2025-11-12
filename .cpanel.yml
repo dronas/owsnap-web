@@ -4,5 +4,5 @@ deployment:
     - export CI=true
     - npm install
     - npm run build
-    - cp -R dist/ /home/yourusername/public_html/ # IMPORTANT: Replace 'yourusername' with your actual cPanel username
+    - cp -R dist/ /home/dafq3exz/public_html/ # IMPORTANT: Replace 'yourusername' with your actual cPanel username
 ---
