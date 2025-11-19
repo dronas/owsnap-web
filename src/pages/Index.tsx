@@ -28,8 +28,6 @@ const Index = () => {
           </Link>
         </section>
 
-        <PricingSection /> {/* Add the PricingSection here */}
-
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 w-full max-w-5xl">
           <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 animate-fade-in delay-600">
             <CardHeader>
@@ -62,6 +60,8 @@ const Index = () => {
             </CardContent>
           </Card>
         </section>
+        
+        <PricingSection /> {/* Moved the PricingSection here */}
       </main>
       <footer className="bg-primary text-primary-foreground p-4 text-center mt-auto">
         <p>&copy; {new Date().getFullYear()} Owsnap Photobooth Rental. All rights reserved.</p>
