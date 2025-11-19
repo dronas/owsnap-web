@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 
 const LanguageToggle = () => {
-  const [language, setLanguage] = useState('en'); // 'en' for English, 'nl' for Dutch
-
-  const toggleLanguage = () => {
-    setLanguage(prevLang => (prevLang === 'en' ? 'nl' : 'en'));
+  const setLanguage = (lang: 'en' | 'nl') => {
     // In a real application, you would load and display translated content here.
-    console.log(`Language toggled to: ${language === 'en' ? 'Dutch' : 'English'}`);
+    console.log(`Language set to: ${lang === 'en' ? 'English' : 'Dutch'}`);
   };
 
   return (
-    <Button variant="outline" onClick={toggleLanguage} className="ml-4">
-      {language === 'en' ? 'Translate to Dutch' : 'Translate to English'}
-    </Button>
+    <div className="flex space-x-2 ml-4">
+      <Button variant="outline" onClick={() => setLanguage('en')}>
+        English
+      </Button>
+      <Button variant="outline" onClick={() => setLanguage('nl')}>
+        Dutch
+      </Button>
+    </div>
   );
 };
 
