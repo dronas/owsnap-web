@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Camera, Sparkles, Smile } from 'lucide-react';
+import PricingSection from '@/components/PricingSection'; // Import the new PricingSection
 
 const Index = () => {
   return (
@@ -26,6 +27,8 @@ const Index = () => {
             </Button>
           </Link>
         </section>
+
+        <PricingSection /> {/* Add the PricingSection here */}
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16 w-full max-w-5xl">
           <Card className="shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 bg-white dark:bg-gray-800 animate-fade-in delay-600">
