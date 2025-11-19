@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const pricingOptions = [
   {
     title: "Basic Fun",
-    price: "$399",
+    price: "€399",
     features: [
       "2 Hours of Photobooth Time",
       "Standard Backdrop",
@@ -21,7 +21,7 @@ const pricingOptions = [
   },
   {
     title: "Standard Party",
-    price: "$599",
+    price: "€599",
     features: [
       "3 Hours of Photobooth Time",
       "Premium Backdrop Options",
@@ -34,7 +34,7 @@ const pricingOptions = [
   },
   {
     title: "Premium Event",
-    price: "$899",
+    price: "€899",
     features: [
       "4 Hours of Photobooth Time",
       "Custom Backdrop Design",
