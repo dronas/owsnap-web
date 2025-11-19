@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LanguageToggle from './LanguageToggle';
+import ThemeToggle from './ThemeToggle'; // Import the new ThemeToggle component
 
 const Header = () => {
   return (
@@ -19,6 +20,7 @@ const Header = () => {
             Book Now
           </Link>
           <LanguageToggle />
+          <ThemeToggle /> {/* Add the ThemeToggle here */}
         </nav>
       </div>
     </header>
