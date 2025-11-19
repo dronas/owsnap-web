@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900">
       <Header />
       <main className="flex-grow container mx-auto p-4 flex flex-col items-center justify-center text-center">
-        <section className="my-12">
+        <section className="py-20 md:py-28"> {/* Adjusted padding for a more prominent hero section */}
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-gray-50 leading-tight mb-6 animate-fade-in">
             Capture Unforgettable Moments with Owsnap!
           </h1>
